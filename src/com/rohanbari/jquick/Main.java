@@ -4,14 +4,27 @@ import static java.lang.System.out;
 
 public class Main {
     public static void main(String[] args) {
-        int parser = ConnectActivity.connect();
+        /*
+        First Method
+        for (int itP = 1; itP <= 5; itP++) {
+            for (int itS = 1; itS <= itP; itS++) {
+                out.print("* ");
+            }
+            out.println();
+        }
+        */
 
-        if (parser == 100) {
-            out.println("This is a localhost address.");
-        } else if (parser == 1) {
-            out.println("This is a private address.");
-        } else {
-            out.println("Looks OK.");
+        int itP = 1;
+        while (itP <= 5) {
+            int itS = 1;
+
+            while (itS <= itP) {
+                out.print("* ");
+                itS++;
+            }
+            out.println();
+
+            itP++;
         }
 
         out.println("Thanks for using this program!");

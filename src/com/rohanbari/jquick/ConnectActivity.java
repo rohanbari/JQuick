@@ -6,6 +6,8 @@ import java.util.Scanner;
  * The connector activity tries to detect the type of the IP address initially.
  * It verifies if the IP address is of type: localhost, private or public.
  *
+ * Unused in Commit 4
+ *
  * @author Rohan
  */
 class ConnectActivity {
