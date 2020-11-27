@@ -1,8 +1,13 @@
 package com.rohanbari.jquick;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class MainActivity extends JFrame {
+public class MainActivity extends JFrame implements ActionListener {
+    private static JButton jButton = new JButton();
+    private static int counter = 0;
+
     /**
      * The main constructor which constitutes a Java Frame.
      */
@@ -14,11 +19,14 @@ public class MainActivity extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
 
-        JLabel jLabel = new JLabel("This is my first label on Swing.");
-        jLabel.setVisible(true);
+        jButton.setText("Swing Me");
+        jButton.setVisible(true);
+        jButton.addActionListener(this);
+        jButton.setToolTipText("Click me to do nothing.");
 
-        jPanel.add(jLabel);
+        jPanel.add(jButton);
         this.add(jPanel);
     }
 
@@ -29,5 +37,15 @@ public class MainActivity extends JFrame {
      */
     public static void main(String[] args) {
         new MainActivity();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == jButton) {
+            JOptionPane.showMessageDialog(null,
+                    String.format("You have clicked this button %d time(s).", ++counter),
+                    "Button Click Listened",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 }
