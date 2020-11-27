@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 public class MainActivity extends JFrame implements ActionListener {
     private static JButton jButton = new JButton();
+    private static JLabel jLabel = new JLabel();
     private static int counter = 0;
 
     /**
@@ -26,7 +27,11 @@ public class MainActivity extends JFrame implements ActionListener {
         jButton.addActionListener(this);
         jButton.setToolTipText("Click me to do nothing.");
 
+        jLabel.setText("Click on the Button to change the text");
+        jLabel.setVisible(true);
+
         jPanel.add(jButton);
+        jPanel.add(jLabel);
         this.add(jPanel);
     }
 
@@ -42,10 +47,11 @@ public class MainActivity extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == jButton) {
-            JOptionPane.showMessageDialog(null,
-                    String.format("You have clicked this button %d time(s).", ++counter),
-                    "Button Click Listened",
-                    JOptionPane.INFORMATION_MESSAGE);
+//            JOptionPane.showMessageDialog(null,
+//                    String.format("You have clicked this button %d time(s).", ++counter),
+//                    "Button Click Listened",
+//                    JOptionPane.INFORMATION_MESSAGE);
+            jLabel.setText("You have clicked this button " + ++counter +" time(s).");
         }
     }
 }
