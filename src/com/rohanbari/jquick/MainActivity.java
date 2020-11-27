@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainActivity extends JFrame implements ActionListener {
+public class MainActivity extends JFrame {
     private static JButton jButton = new JButton();
     private static JLabel jLabel = new JLabel();
     private static int counter = 0;
@@ -24,7 +24,10 @@ public class MainActivity extends JFrame implements ActionListener {
 
         jButton.setText("Swing Me");
         jButton.setVisible(true);
-        jButton.addActionListener(this);
+
+        Listener listener = new Listener();
+
+        jButton.addActionListener(listener);
         jButton.setToolTipText("Click me to do nothing.");
 
         jLabel.setText("Click on the Button to change the text");
