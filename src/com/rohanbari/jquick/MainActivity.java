@@ -10,8 +10,8 @@ public class MainActivity extends JFrame {
     private final static JButton jButton = new JButton();
     private final static JLabel jLabel = new JLabel();
     private static boolean runCounter = false;
-    private static int counter = 1;
     private static Timer timer;
+    private static int counter = 0;
 
     /**
      * The main constructor which constitutes a Java Frame.
@@ -51,8 +51,7 @@ public class MainActivity extends JFrame {
     }
 
     public static class Listener implements ActionListener {
-
-
+      
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == jButton) {
