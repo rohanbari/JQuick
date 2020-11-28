@@ -3,10 +3,14 @@ package com.rohanbari.jquick;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends JFrame {
     private final static JButton jButton = new JButton();
     private final static JLabel jLabel = new JLabel();
+    private static boolean runCounter = false;
+    private static Timer timer;
     private static int counter = 0;
 
     /**
@@ -14,28 +18,27 @@ public class MainActivity extends JFrame {
      */
     public MainActivity() {
         JPanel jPanel = new JPanel();
+        Listener listener = new Listener();
 
         this.setTitle("Swinger Swing");
-        this.setSize(300, 100);
+        this.setSize(300, 200);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
 
-        jButton.setText("Swing Me");
-        jButton.setVisible(true);
-
-        Listener listener = new Listener();
-
-        jButton.addActionListener(listener);
-        jButton.setToolTipText("Click me to do nothing.");
-
-        jLabel.setText("Click on the Button to change the text");
         jLabel.setVisible(true);
+        jLabel.setText("Beginning to count...");
 
-        jPanel.add(jButton);
+        jButton.setText("Start");
+        jButton.setVisible(true);
+        jButton.addActionListener(listener);
+
         jPanel.add(jLabel);
+        jPanel.add(jButton);
         this.add(jPanel);
+
+        jButton.doClick();
     }
 
     /**
@@ -48,14 +51,28 @@ public class MainActivity extends JFrame {
     }
 
     public static class Listener implements ActionListener {
+      
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == jButton) {
-//            JOptionPane.showMessageDialog(null,
-//                    String.format("You have clicked this button %d time(s).", ++counter),
-//                    "Button Click Listened",
-//                    JOptionPane.INFORMATION_MESSAGE);
-                jLabel.setText("You have clicked this button " + ++counter +" time(s).");
+
+                runCounter = !runCounter;
+                jButton.setText((jButton.getText().equals("Start")) ? "Stop" : "Start");
+
+
+                if (runCounter) {
+                    TimerTask task = new TimerTask() {
+                        @Override
+                        public void run() {
+                            jLabel.setText(String.valueOf(counter));
+                            counter++;
+                        }
+                    };
+                    timer = new Timer();
+                    timer.schedule(task, 1000, 1000);
+                } else {
+                    timer.cancel();
+                }
             }
         }
     }
