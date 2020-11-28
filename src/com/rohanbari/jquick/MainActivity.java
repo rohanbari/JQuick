@@ -3,42 +3,36 @@ package com.rohanbari.jquick;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Timer;
-import java.util.TimerTask;
 
-public class MainActivity extends JFrame {
-    private final static JButton jButton = new JButton();
-    private final static JLabel jLabel = new JLabel();
-    private static boolean runCounter = false;
-    private static int counter = 1;
-    private static Timer timer;
+public class MainActivity extends JFrame implements ActionListener {
+    private static JButton jButton = new JButton();
+    private static JLabel jLabel = new JLabel();
+    private static int counter = 0;
 
     /**
      * The main constructor which constitutes a Java Frame.
      */
     public MainActivity() {
         JPanel jPanel = new JPanel();
-        Listener listener = new Listener();
 
         this.setTitle("Swinger Swing");
-        this.setSize(300, 200);
+        this.setSize(300, 100);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
 
-        jLabel.setVisible(true);
-        jLabel.setText("Beginning to count...");
-
-        jButton.setText("Start");
+        jButton.setText("Swing Me");
         jButton.setVisible(true);
-        jButton.addActionListener(listener);
+        jButton.addActionListener(this);
+        jButton.setToolTipText("Click me to do nothing.");
 
-        jPanel.add(jLabel);
+        jLabel.setText("Click on the Button to change the text");
+        jLabel.setVisible(true);
+
         jPanel.add(jButton);
+        jPanel.add(jLabel);
         this.add(jPanel);
-
-        jButton.doClick();
     }
 
     /**
@@ -46,35 +40,18 @@ public class MainActivity extends JFrame {
      *
      * @param args Command-line arguments
      */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         new MainActivity();
     }
 
-    public static class Listener implements ActionListener {
-
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == jButton) {
-
-                runCounter = !runCounter;
-                jButton.setText((jButton.getText().equals("Start")) ? "Stop" : "Start");
-
-
-                if (runCounter) {
-                    TimerTask task = new TimerTask() {
-                        @Override
-                        public void run() {
-                            jLabel.setText(String.valueOf(counter));
-                            counter++;
-                        }
-                    };
-                    timer = new Timer();
-                    timer.schedule(task, 1000, 1000);
-                } else {
-                    timer.cancel();
-                }
-            }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == jButton) {
+//            JOptionPane.showMessageDialog(null,
+//                    String.format("You have clicked this button %d time(s).", ++counter),
+//                    "Button Click Listened",
+//                    JOptionPane.INFORMATION_MESSAGE);
+            jLabel.setText("You have clicked this button " + ++counter +" time(s).");
         }
     }
 }
