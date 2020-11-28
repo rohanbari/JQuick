@@ -6,17 +6,17 @@ import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends JFrame {
+class SwingCounter extends JFrame {
     private final static JButton jButton = new JButton();
     private final static JLabel jLabel = new JLabel();
     private static boolean runCounter = false;
-    private static Timer timer;
+    private static java.util.Timer timer;
     private static int counter = 0;
 
     /**
      * The main constructor which constitutes a Java Frame.
      */
-    public MainActivity() {
+    public SwingCounter() {
         JPanel jPanel = new JPanel();
         Listener listener = new Listener();
 
@@ -47,18 +47,16 @@ public class MainActivity extends JFrame {
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
-        new MainActivity();
+        new SwingCounter();
     }
 
-    public static class Listener implements ActionListener {
-      
+    private static class Listener implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == jButton) {
-
                 runCounter = !runCounter;
                 jButton.setText((jButton.getText().equals("Start")) ? "Stop" : "Start");
-
 
                 if (runCounter) {
                     TimerTask task = new TimerTask() {
