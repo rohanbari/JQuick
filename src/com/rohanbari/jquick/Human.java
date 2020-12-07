@@ -1,4 +1,4 @@
-package com.rohanbari.jquick.threading;
+package com.rohanbari.jquick;
 
 import java.util.Date;
 
