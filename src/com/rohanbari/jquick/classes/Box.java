@@ -20,7 +20,7 @@ public class Box {
     }
 
     /**
-     * Construct box while creating object
+     * Constructs box while creating object
      * @param width Width of the Box in Specific Unit
      * @param height Height of the Box in Specific Unit
      * @param depth Depth of the Box in Specific Unit
@@ -29,6 +29,14 @@ public class Box {
         this.width = width;
         this.height = height;
         this.depth = depth;
+    }
+
+    /**
+     * Constructs cube by passing length
+     * @param length specifies unit to make a cube
+     */
+    public Box(double length){
+        this.width = this.height = this.depth = length;
     }
 
     /**
