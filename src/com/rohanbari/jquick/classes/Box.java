@@ -47,6 +47,15 @@ public class Box {
     }
 
     /**
+     * Method to return whether the Box object is equal or not
+     * @param box Box object
+     * @return true if box object is equal
+     */
+    public boolean equalTo(Box box){
+        return getWidth() == box.width && getHeight() == box.height && getDepth() == box.depth;
+    }
+
+    /**
      * Sets the width of the Box
      * @param width of the box
      */
