@@ -17,6 +17,9 @@ public class Box {
      * Empty constructor to use make implementation of setters
      */
     public Box() {
+        this.width = 1.0;
+        this.height = 1.0;
+        this.depth = 1.0;
     }
 
     /**
