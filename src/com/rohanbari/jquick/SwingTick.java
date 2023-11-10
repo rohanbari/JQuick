@@ -1,16 +1,15 @@
-package com.rohanbari.jquick;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SwingTick extends JFrame {
+public class Main extends JFrame {
     private static JButton jButton = new JButton();
+    private static JLabel jLabel = new JLabel();
+
     private static Timer timer;
     private static boolean stateEnabled = true;
 
-    // Constructor to construct a swing frame
-    public SwingTick() {
+    public Main() {
         JPanel jPanel = new JPanel();
         ListenAction listenAction = new ListenAction();
 
@@ -25,18 +24,20 @@ public class SwingTick extends JFrame {
         jButton.addActionListener(listenAction);
         jButton.setVisible(true);
 
+        jLabel = new JLabel("Text will appear here");
+        jButton.setVisible(true);
+
         jPanel.add(jButton);
+        jPanel.add(jLabel);
         this.add(jPanel);
 
         timer = new Timer(1000, listenAction);
     }
 
-    // main() to create an instance of the framed application
     public static void main(String[] args) {
-        new SwingTick();
+        new Main();
     }
 
-    // Inner Class to listen the ActionEvent
     public static class ListenAction implements ActionListener {
         private static boolean tick = true;
 
@@ -46,7 +47,6 @@ public class SwingTick extends JFrame {
                 stateEnabled = !stateEnabled;
                 jButton.setText(jButton.getText().equals("Start") ? "Stop" : "Start");
 
-                // Toggles the timer
                 if (stateEnabled) {
                     timer.stop();
                     return;
@@ -55,13 +55,7 @@ public class SwingTick extends JFrame {
                 }
             }
 
-            if (tick) {
-                System.out.print("Tick ");
-            } else {
-                System.out.println("Tock");
-            }
-
-            // Flip the boolean idea
+            jLabel.setText((tick ? "Tick" : "Tok"));
             tick = !tick;
         }
     }
